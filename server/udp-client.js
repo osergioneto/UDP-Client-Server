@@ -13,13 +13,13 @@ process.stdin.setEncoding('utf-8');
 // When receive user input data in console.
 process.stdin.on('data', function(text) {
   // If user input 'send\n' then send all user input data to udp server.
-  if (text === 'send\n') {
+  if (text === 'enviar\n') {
     // If user do not input data in command line then send default message.
     if (message == null || message.length == 0) {
-      message = 'Hello udp server.';
+      message = 'UDP Server funcionando.';
     }
 
-    console.log(`User input : ${message}`);
+    console.log(`Input do usuário: : ${message}`);
 
     // Create a node Buffer object to wrap message object.
     message = new Buffer(message);
