@@ -1,0 +1,19 @@
+{
+  "name": "udp-client-server",
+  "version": "1.0.0",
+  "description": "Correção de questionários utilizando um server udp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osergioneto/UDP-Client-Server.git"
+  },
+  "author": "Sérgio Neto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/osergioneto/UDP-Client-Server/issues"
+  },
+  "homepage": "https://github.com/osergioneto/UDP-Client-Server#readme"
+}
