@@ -1,0 +1,49 @@
+{
+  "1": {
+    "numeroAlternativas": 5,
+    "respostas": [
+      "V",
+      "V",
+      "F",
+      "F",
+      "V"
+    ]
+  },
+  "2": {
+    "numeroAlternativas": 4,
+    "respostas": [
+      "V",
+      "V",
+      "V",
+      "V"
+    ]
+  },
+  "3": {
+    "numeroAlternativas": 3,
+    "respostas": [
+      "F",
+      "F",
+      "V",
+      "F",
+      "F"
+    ]
+  },
+  "4": {
+    "numeroAlternativas": 5,
+    "respostas": [
+      "F",
+      "F",
+      "F"
+    ]
+  },
+  "5": {
+    "numeroAlternativas": 5,
+    "respostas": [
+      "V",
+      "V",
+      "F",
+      "V",
+      "F"
+    ]
+  }
+}
