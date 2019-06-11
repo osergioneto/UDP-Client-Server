@@ -1,6 +1,7 @@
 // Require dgram module.
 const dgram = require('dgram');
-const gabarito = require('./gabarito.json');
+const path = require('path');
+const gabarito = require(path.resolve('./gabarito.json'));
 
 // Create udp server socket object.
 const server = dgram.createSocket('udp4');
@@ -14,11 +15,7 @@ server.on('message', function(message) {
   const mensagemCliente = verifyMessage(message);
   // Corrigindo questões
   const respostasCorrigidas = verifyAnswers(gabarito, mensagemCliente);
-  console.log(respostasCorrigidas);
-  // Create output message.
-  const output = `Udp server receive message : ${message}\n`;
-  // Print received message in stdout, here is log console.
-  process.stdout.write(output);
+  console.log('Correção: ', '\n', respostasCorrigidas);
 });
 
 // When udp server started and listening.
@@ -55,8 +52,6 @@ const verifyAnswers = (gabarito, respostasCliente) => {
     let erros = 0;
     const respostaCliente = respostasCliente[i].respostas.split('');
     for (let j = 0; j < gabarito[(i + 1).toString()].respostas.length; j += 1) {
-      console.log(respostaCliente[(i + 1).toString]);
-      console.log(gabarito[(i + 1).toString()].respostas[j]);
       if (gabarito[(i + 1).toString()].respostas[j] === respostaCliente[j]) {
         acertos += 1;
       } else {
