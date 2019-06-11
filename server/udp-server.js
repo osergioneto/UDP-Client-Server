@@ -3,6 +3,8 @@ const dgram = require('dgram');
 const path = require('path');
 const gabarito = require(path.resolve('./gabarito.json'));
 
+const bd = [];
+
 // Create udp server socket object.
 const server = dgram.createSocket('udp4');
 
@@ -16,6 +18,9 @@ server.on('message', function(message) {
   // Corrigindo questões
   const respostasCorrigidas = verifyAnswers(gabarito, mensagemCliente);
   console.log('Correção: ', '\n', respostasCorrigidas);
+  bd.push(respostasCorrigidas);
+  const dadosQuestoes = estatisticas(bd);
+  console.log('Dados Históricos: ', '\n', dadosQuestoes);
 });
 
 // When udp server started and listening.
@@ -67,3 +72,30 @@ const verifyAnswers = (gabarito, respostasCliente) => {
   }
   return respostasCorrigidas;
 };
+
+const estatisticas = (bd) => {
+  const questoesRespondidas = [];
+  let acertosPorQuestao = [0,0,0,0,0];
+  let errosPorQuestao = [0,0,0,0,0];
+  const porcentagens = [];
+  
+  for(let i = 0; i < bd.length; i++){
+    for(let j = 0; j < bd[i].length; j++){
+      acertosPorQuestao[j] += parseInt(bd[i][j].acertos);
+      errosPorQuestao[j] += parseInt(bd[i][j].erros);
+      questoesRespondidas[j] = parseInt(bd[i][j].acertos) + parseInt(bd[i][j].erros);
+    }
+  } 
+  
+  for(let i = 0; i < 5; i++){
+    const porcentagemAcertos = (((acertosPorQuestao[i] / (questoesRespondidas[i])) * 100) / bd.length).toFixed(2);
+    const porcentagemErros = (((errosPorQuestao[i] / (questoesRespondidas[i])) * 100) / bd.length).toFixed(2);
+    const porcentagem = {
+      questao: i + 1,
+      porcentagemAcertos: porcentagemAcertos+'%',
+      porcentagemErros: porcentagemErros+'%',
+    };
+    porcentagens.push(porcentagem);
+  }
+  return porcentagens;
+}
